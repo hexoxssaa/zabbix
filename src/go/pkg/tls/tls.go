@@ -22,7 +22,7 @@ package tls
 /*
 #cgo CFLAGS: -I${SRCDIR}/../../../../include -I${SRCDIR}/../../../../build/win32/include
 
-#cgo openssl LDFLAGS: -lssl -lcrypto -lwsock32 -lws2_32
+#cgo openssl LDFLAGS: -lssl -lcrypto -lwsock32 -lws2_32 -lcrypt32
 
 #include <stdlib.h>
 #include <stdio.h>
