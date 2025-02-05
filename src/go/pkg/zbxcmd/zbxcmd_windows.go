@@ -28,7 +28,7 @@ import (
 	"strings"
 	"syscall"
 	"time"
-	"unsafe"
+	"reflect"
 
 	"golang.org/x/sys/windows"
 	"golang.zabbix.com/sdk/log"
@@ -75,7 +75,7 @@ func execute(s string, timeout time.Duration, path string, strict bool) (out str
 		return "", fmt.Errorf("Cannot execute command (%s, path: %s): %s", s, path, err)
 	}
 
-	processHandle := windows.Handle((*process)(unsafe.Pointer(cmd.Process)).Handle)
+	processHandle := windows.Handle(uintptr(reflect.ValueOf(cmd.Process).Elem().FieldByName("handle").Uint()))
 
 	defer func() {
 		if cmd.ProcessState == nil {
